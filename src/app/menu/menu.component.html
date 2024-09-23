@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <mat-icon [routerLink]="['/']">books</mat-icon>
+  <span>
+    <button mat-button [matMenuTriggerFor]="menuUsuario">Usuario</button>
+    <mat-menu #menuUsuario="matMenu">
+      <button mat-menu-item [routerLink]="['/usuario']">Consultar</button>
+      <button mat-menu-item [routerLink]="['/usuario/cadastrar']">Cadastro</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuLivro">Livro</button>
+    <mat-menu #menuLivro="matMenu">
+      <button mat-menu-item [routerLink]="['/livro']">Consultar</button>
+      <button mat-menu-item [routerLink]="['/cadastrar']">Cadastro</button>
+      <button mat-menu-item>Consultar livros externos</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuEmprestimo">Emprestimos</button>
+    <mat-menu #menuEmprestimo="matMenu">
+      <button mat-menu-item [routerLink]="['/emprestimo']">Consultar</button>
+      <button mat-menu-item [routerLink]="['/emprestimo/emprestar']">Emprestimo</button>
+      <button mat-menu-item [routerLink]="['/emprestimo/sugerir']">Sugerir</button>
+      <button mat-menu-item>Consultar livros externos</button>
+    </mat-menu>
+  </span>
+</mat-toolbar>

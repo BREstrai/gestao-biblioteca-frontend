@@ -1,0 +1,35 @@
+<mat-card appearance="raised">
+    <mat-card-header>
+        <mat-card-title>Livros cadastrados</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="titulo">
+                <th mat-header-cell *matHeaderCellDef> Titulo </th>
+                <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="autor">
+                <th mat-header-cell *matHeaderCellDef> Autor </th>
+                <td mat-cell *matCellDef="let element"> {{element.autor}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="categoria">
+                <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="opcoes">
+                <th mat-header-cell *matHeaderCellDef> Opções </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="warn" class="space-between-buttons" (click)="deletarLivro(element.idLivro)">Deletar</button>
+                    <button mat-raised-button color="primary" (click)="atualizarLivro(element)">Editar</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>
