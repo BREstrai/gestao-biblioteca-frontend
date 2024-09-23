@@ -3,6 +3,7 @@ import { Emprestimo } from '../domains/emprestimo';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 import { EmprestimoService } from './emprestimo.service';
 import { NotificacaoService } from '../commons/notificacao.service';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-emprestimos',
   standalone: true,
   imports: [
+    MatButtonModule,
     MatCardModule,
     MatTableModule,
     MatToolbarModule,
@@ -23,7 +25,7 @@ export class EmprestimosComponent {
 
   dataSource: Emprestimo[] = [];
   
-  displayedColumns: string[] = ['usuario', 'livro', 'dhEmprestimo'];
+  displayedColumns: string[] = ['usuario', 'livro', 'dhEmprestimo', 'dhDevolucao', 'opcoes'];
 
   constructor(
     private emprestimoService: EmprestimoService,
@@ -39,6 +41,20 @@ export class EmprestimosComponent {
     this.emprestimoService.getEmprestimos().subscribe({
       next: (data) => {
         this.dataSource = data;
+      },
+      error: (error) => {
+        this.notificacao.openSnack(error.error.message);
+      }
+    });
+  }
+
+  devolver(emprestimo: Emprestimo): void {
+  console.log(emprestimo);
+
+    this.emprestimoService.putDevovler(emprestimo.idEmprestimo).subscribe({
+      next: (data) => {
+        this.carregarEmprestimos();
+        this.notificacao.openSnack('Devolução realizada com sucesso.');
       },
       error: (error) => {
         this.notificacao.openSnack(error.error.message);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Emprestimo } from '../domains/emprestimo';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,12 @@ export class EmprestimoService {
   getEmprestimos(): Observable<Emprestimo[]> {
 
     return this.http.get<Emprestimo[]>(this.apiUrl);
+  }
+
+  putDevovler(id: number): Observable<void> {
+
+    const params = new HttpParams().set('idEmprestimo', id);
+
+    return this.http.put<void>(this.apiUrl, params);
   }
 }
