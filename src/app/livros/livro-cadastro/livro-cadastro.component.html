@@ -1,1 +1,55 @@
-<p>livro-cadastro works!</p>
+<mat-card class="borda">
+    <mat-card-header>
+        <mat-card-title>Cadastro do Livro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="livroForm" (ngSubmit)="salvar()" class="example-form">
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field fxFlex="45%">
+                    <mat-label>Título</mat-label>
+                    <input matInput formControlName="titulo" placeholder="Digite o título">
+                    <mat-error *ngIf="livroForm.get('titulo')?.hasError('required')">O título é obrigatório.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field fxFlex="45%">
+                    <mat-label>Autor</mat-label>
+                    <input matInput formControlName="autor" placeholder="Digite o autor">
+                    <mat-error *ngIf="livroForm.get('autor')?.hasError('required')">O autor é obrigatório.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none">
+                <mat-form-field fxFlex="45%">
+                    <mat-label>ISBN</mat-label>
+                    <input matInput formControlName="isbn" placeholder="Digite o ISBN">
+                    <mat-error *ngIf="livroForm.get('isbn')?.hasError('required')">O ISBN é obrigatório.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field fxFlex="45%">
+                    <mat-label>Data de Publicação</mat-label>
+                    <input matInput formControlName="dhPublicacao" placeholder="Digite a data de publicação" type="date">
+                    <mat-error *ngIf="livroForm.get('dhPublicacao')?.hasError('required')">A data de publicação éobrigatória</mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field>
+                <mat-label>Categoria</mat-label>
+                <mat-select formControlName="categoria">
+                    <mat-option *ngFor="let categoria of categorias" [value]="categoria.valor">
+                        {{ categoria.descricao }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="livroForm.get('categoria')?.hasError('required')">A categoria é obrigatória</mat-error>
+            </mat-form-field>            
+
+            <div fxLayout="row">
+                <button mat-raised-button color="primary" type="submit">Salvar</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

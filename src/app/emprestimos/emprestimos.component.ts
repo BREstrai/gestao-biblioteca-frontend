@@ -38,6 +38,7 @@ export class EmprestimosComponent {
   }
 
   carregarEmprestimos(): void {
+    
     this.emprestimoService.getEmprestimos().subscribe({
       next: (data) => {
         this.dataSource = data;
@@ -49,9 +50,8 @@ export class EmprestimosComponent {
   }
 
   devolver(emprestimo: Emprestimo): void {
-  console.log(emprestimo);
 
-    this.emprestimoService.putDevovler(emprestimo.idEmprestimo).subscribe({
+    this.emprestimoService.devovler(emprestimo.idEmprestimo).subscribe({
       next: (data) => {
         this.carregarEmprestimos();
         this.notificacao.openSnack('Devolução realizada com sucesso.');

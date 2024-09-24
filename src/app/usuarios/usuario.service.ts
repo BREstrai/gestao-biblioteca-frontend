@@ -17,6 +17,18 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.apiUrl);
   }
 
+  criarNovoUsuario(usuario: Usuario): Observable<Usuario> {
+
+    return this.http.post<Usuario>(this.apiUrl, usuario);
+  }
+
+  atualizarUsuario(id: number, usuario: Usuario): Observable<Usuario> {
+
+    const params = new HttpParams().set('idUsuario', id);
+
+    return this.http.put<Usuario>(this.apiUrl, usuario, { params: params });
+  }
+
   deleteUsuario(id: number): Observable<void> {
 
     const params = new HttpParams().set('idUsuario', id);

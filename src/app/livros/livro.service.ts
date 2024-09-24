@@ -17,6 +17,18 @@ export class LivroService {
     return this.http.get<Livro[]>(this.apiUrl);
   }
 
+  criarNovoLivro(livro: Livro): Observable<Livro> {
+
+    return this.http.post<Livro>(this.apiUrl, livro);
+  }
+
+  atualizarLivro(id: number, livro: Livro): Observable<Livro> {
+
+    const params = new HttpParams().set('idLivro', id);
+
+    return this.http.put<Livro>(this.apiUrl, livro, { params: params });
+  }
+
   deleteLivro(id: number): Observable<void> {
 
     const params = new HttpParams().set('idLivro', id);

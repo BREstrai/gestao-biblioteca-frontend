@@ -11,9 +11,9 @@ import { LivroCadastroComponent } from './livros/livro-cadastro/livro-cadastro.c
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'usuario', component: UsuariosComponent},
-    {path: 'usuario/cadastrar', component: UsuarioCadastroComponent},
+    {path: 'usuario/cadastro', component: UsuarioCadastroComponent},
     {path: 'livro', component: LivrosComponent},
-    {path: 'livro/cadastrar', component: LivroCadastroComponent},
+    {path: 'livro/cadastro', component: LivroCadastroComponent},
     {path: 'emprestimo', component: EmprestimosComponent},
     {path: 'emprestimo/emprestar', component: EmprestarComponent},
     {path: 'emprestimo/sugerir', component: SugerirComponent},

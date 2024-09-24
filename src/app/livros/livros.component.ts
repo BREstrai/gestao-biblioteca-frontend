@@ -4,8 +4,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { LivroService } from './livro.service';
 import { NotificacaoService } from '../commons/notificacao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-livros',
@@ -15,6 +17,7 @@ import { NotificacaoService } from '../commons/notificacao.service';
     MatTableModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './livros.component.html',
   styleUrl: './livros.component.scss'
@@ -26,6 +29,7 @@ export class LivrosComponent {
   displayedColumns: string[] = ['titulo', 'autor', 'categoria', 'opcoes'];
 
   constructor(
+    private router: Router,
     private livroService: LivroService,
     private notificacao: NotificacaoService,
   ) { }
@@ -58,7 +62,7 @@ export class LivrosComponent {
     });
   }
 
-  atualizarLivro(usuario: Livro): void {
-    
+  atualizarLivro(livro: Livro): void {
+    this.router.navigate(['/livro/cadastro'], {state: {livro}});
   }
 }
