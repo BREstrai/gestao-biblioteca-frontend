@@ -34,7 +34,7 @@ export class EmprestimoService {
     
     const url = `${this.apiUrl}/sugestao`; 
     
-    const params = new HttpParams().set('idUsuario', idUsuario.toString()); // Adicionando idUsuario como parâmetro
+    const params = new HttpParams().set('idUsuario', idUsuario);
 
     return this.http.get<Livro[]>(url, { params });
   }
